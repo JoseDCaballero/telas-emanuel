@@ -1,37 +1,45 @@
 <template>
-    <div class="home">
-      <div class="container">
-        <h1>Bienvenido a Telas Emanuel</h1>
-        <router-link to="/categories" class="btn">Iniciar</router-link>
-      </div>
-    </div>
-  </template>
-  
-  <style scoped>
-  .home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+  <main>
+    <h1>Telas Emanuel</h1>
+    <h3>Productos más vendidos</h3>
+    <div class="container mx-auto p-4" @click="verProd()">
+      <Carrusel :slides="slides" v-if="slides.length > 0" />
+      <p v-else>Cargando productos...</p>
+    </div>    
+    <router-link to="/categories">
+      Ver categorías
+    </router-link>
+  </main>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import Carrusel from '../components/Carrusel.vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const slides = ref([])
+
+const fetchRandomProducts = async () => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_API_TELASEMANUEL+'/random-products/')
+    slides.value = response.data.map(product => product.url)
+  } catch (error) {
+    console.error("Error fetching random products:", error)
   }
-  
-  .container {
-    text-align: center;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1.2rem;
-  }
-  </style>  
+}
+
+function verProd(){
+router.push("")
+}
+
+onMounted(fetchRandomProducts)
+</script>
+
+<style>
+a {
+  text-decoration: none;
+  font-size: 3em;
+}
+</style>
