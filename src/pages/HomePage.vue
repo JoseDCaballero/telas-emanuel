@@ -5,7 +5,7 @@
     <div class="container mx-auto p-4" @click="verProd()">
       <Carrusel :slides="slides" v-if="slides.length > 0" />
       <p v-else>Cargando productos...</p>
-    </div>    
+    </div>
     <router-link to="/categories">
       Ver categorías
     </router-link>
@@ -13,31 +13,31 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import Carrusel from '../components/Carrusel.vue'
-import axios from 'axios'
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import Carrusel from '../components/Carrusel.vue';
 
 const router = useRouter();
-const slides = ref([])
+const slides = ref([]);
 
 const fetchRandomProducts = async () => {
   try {
-    const response = await axios.get(import.meta.env.VITE_API_TELASEMANUEL+'/random-products/')
-    slides.value = response.data.map(product => product.url)
+    const response = await axios.get(import.meta.env.VITE_API_TELASEMANUEL + '/random-products/');
+    slides.value = response.data.map(product => product.url);
   } catch (error) {
-    console.error("Error fetching random products:", error)
+    console.error("Error fetching random products:", error);
   }
 }
 
-function verProd(){
-router.push("")
+function verProd() {
+  router.push("");
 }
 
-onMounted(fetchRandomProducts)
+onMounted(fetchRandomProducts);
 </script>
 
-<style>
+<style scoped>
 a {
   text-decoration: none;
   font-size: 3em;

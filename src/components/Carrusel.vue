@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   slides: {
@@ -25,6 +25,7 @@ const props = defineProps({
 })
 
 const currentIndex = ref(0)
+let intervalId
 
 const next = () => {
   currentIndex.value = (currentIndex.value + 1) % props.slides.length
@@ -33,6 +34,18 @@ const next = () => {
 const prev = () => {
   currentIndex.value = (currentIndex.value - 1 + props.slides.length) % props.slides.length
 }
+
+const startAutoSlide = () => {
+  intervalId = setInterval(next, 3000) // Cambia las imágenes cada 3 segundos
+}
+
+onMounted(() => {
+  startAutoSlide()
+})
+
+onUnmounted(() => {
+  clearInterval(intervalId)
+})
 </script>
 
 <style scoped>

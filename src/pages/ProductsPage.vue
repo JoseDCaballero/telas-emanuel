@@ -1,11 +1,12 @@
 <template>
+    <ModalCart />
     <div>
         <h1>{{ categoryName }}</h1>
         <div v-if="isLoading" class="loading-container">
             <img src="../images/loading.gif" alt="Cargando" class="loading-gif" />
             <p>Cargando...</p>
         </div>
-        <ProductList v-else :products="products" />
+        <ProductList v-else :products="products" :categoryName="categoryName" />
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import { ref, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import ProductList from '../components/ProductList.vue';
+import ModalCart from '../components/ModalCart.vue';
 
 const route = useRoute();
 const categoryName = ref(route.params.categoryName);

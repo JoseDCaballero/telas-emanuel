@@ -1,24 +1,23 @@
-<template>
+<template>    
     <div class="product-list">
-        <div v-for="product in products" :key="product.name" class="product-card">
-            <img :src="product.url" alt="Product Image" />
-            <h3>{{ product.name }}</h3>
-            <p> Precio: ${{ product.price }}</p>
-            <p v-if="product.categoryName=='Cierres'">*Incluye 2 seguros*</p>
-            <button @click="anadir()">Agregar a cuenta</button>
+        <div v-for="product in products" :key="product.name" class="product-card" @click="redirectToOrder(product)">
+            <img :src="product.url" alt="Product Image" />            
         </div>
     </div>
 </template>
 
 <script setup>
-//import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
-    products: Array
+    products: Array,
+    categoryName: String // Asegúrate de que categoryName es pasado como prop
 });
 
-function anadir(){
-    alert("Artículo añadido")
+const router = useRouter();
+
+function redirectToOrder(product) {
+    router.push({ name: 'OrderPage', params: { categoryName: props.categoryName, product: product.name } });
 }
 </script>
 
@@ -34,10 +33,17 @@ function anadir(){
     margin: 10px;
     text-align: center;
     width: 200px;
+    cursor: pointer;
 }
 
 .product-card img {
     max-width: 100%;
     height: auto;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 </style>

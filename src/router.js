@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { 
   HomePage,
   ProductsPage,
-  CategoryPage 
+  CategoryPage,
+  OrderPage 
 } from './pages/index.js'
-import DefaultLayout from './layouts/DefaultLayout.vue'
+import DefaultLayout from './layouts/DefaultLayout.vue';
 
 const routes = [
   {
@@ -34,6 +35,15 @@ const routes = [
       layout: DefaultLayout
     }
   },
+  {
+    path: '/categories/:categoryName/:product',
+    name: 'OrderPage',
+    component: OrderPage,
+    meta:{
+      title: 'Información',
+      layout: DefaultLayout
+    }
+  }
 ]
 
 const router = createRouter({  

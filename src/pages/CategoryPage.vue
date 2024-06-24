@@ -1,4 +1,5 @@
 <template>
+    <ModalCart />
     <div>
       <h1>Estas son las categorias de nuestros productos</h1>
       <div v-if="isLoading" class="loading-container">
@@ -17,6 +18,7 @@
   import axios from 'axios';
   import CategoryCard from '../components/CategoryCard.vue';
   import { useRouter } from 'vue-router';
+  import ModalCart from '../components/ModalCart.vue';
   
   const categories = ref([]);
   const isLoading = ref(true);
