@@ -2,47 +2,57 @@
   <div>
     <button @click="showCart = true">
       <font-awesome-icon icon="shopping-cart" />
-      <span class="badge" v-if="cartItemCount > 0">{{ cartItemCount }}</span>
+      <span class="badge" v-if="cartItems.length > 0">{{ cartItems.length }}</span>
     </button>
     <Modal :visible="showCart" @close="showCart = false">
-      <Cart />
+      <Cart :cartItems="cartItems" @cart-updated="updateCartItems" />
     </Modal>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import Modal from './Modal.vue';
 import Cart from './Cart.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+// Register FontAwesome icon
+library.add(faShoppingCart);
 
 const showCart = ref(false);
 const cartItems = ref([]);
 
-// Función para cargar los elementos del carrito desde localStorage
-const fetchCartItems = () => {
+// Load cart items from localStorage on component mount
+onMounted(() => {
+  loadCartItems();
+  // Escuchar el evento cart-updated
+  window.addEventListener('cart-updated', handleCartUpdated);
+});
+
+// Watch for changes in cartItems to update localStorage and badge
+watch(cartItems, (newItems) => {
+  updateLocalStorage();
+}, { deep: true });
+
+function loadCartItems() {
   const items = JSON.parse(localStorage.getItem('shoppingCart')) || [];
   cartItems.value = items;
-};
+}
 
-// Ejecutar la función fetchCartItems al montar el componente
-onMounted(fetchCartItems);
-
-// Calcula el número total de elementos en el carrito
-const cartItemCount = computed(() => cartItems.value.length);
-
-// Función para eliminar un elemento del carrito
-const removeFromCart = (index) => {
-  cartItems.value.splice(index, 1);
+function updateLocalStorage() {
   localStorage.setItem('shoppingCart', JSON.stringify(cartItems.value));
-};
+}
 
-// Observa cambios en cartItems para verificar si el último elemento se ha eliminado
-watch(cartItems, () => {
-  if (cartItems.value.length === 0) {
-    showCart.value = false; // Oculta el modal cuando el carrito está vacío
-  }
-});
+function updateCartItems(items) {
+  cartItems.value = items;
+}
+
+// Manejar el evento cart-updated
+function handleCartUpdated(event) {
+  cartItems.value = event.detail;
+}
 </script>
 
 <style scoped>
@@ -50,7 +60,7 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem; /* Ajusta el tamaño del icono según sea necesario */
+  font-size: 1.5rem; /* Adjust icon size as needed */
   position: relative;
 }
 

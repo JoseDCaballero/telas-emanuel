@@ -8,7 +8,7 @@
             <div v-for="(item, index) in cart" :key="index" class="cart-item">
                 <div class="item-info">
                     <h3>{{ item.name }}</h3>
-                    <p>Precio unitario: ${{ item.price }}</p>                    
+                    <p>Precio unitario: ${{ item.price }}</p>
                     <p>Cantidad: {{ item.quantity }} {{ item.unit }}</p>
                     <p>Total: ${{ item.price * item.quantity }}</p>
                 </div>
@@ -28,29 +28,49 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
-const cart = ref([]);
+// Definir emit
+const emit = defineEmits(['cart-updated']);
 
-onMounted(() => {
-    const cartItems = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-    cart.value = cartItems;
+// Props para recibir cartItems desde el componente padre (ModalCart.vue)
+const props = defineProps({
+    cartItems: Array
 });
 
+// Propiedad reactiva para manejar el carrito
+const cart = ref([]);
+
+// Asignar los cartItems recibidos del padre al carrito
+watch(() => props.cartItems, (newVal) => {
+    cart.value = newVal;
+}, { immediate: true });
+
+// Watcher para emitir el carrito actualizado al componente padre cuando cambie el carrito
+watch(cart, (newCart) => {
+    emitUpdate();
+}, { deep: true });
+
+// Método para eliminar un elemento del carrito
 function removeFromCart(index) {
     cart.value.splice(index, 1);
-    localStorage.setItem('shoppingCart', JSON.stringify(cart.value));
 }
 
+// Método para actualizar la cantidad de un elemento en el carrito
 function updateQuantity(index) {
     if (cart.value[index].quantity < 1) {
         cart.value[index].quantity = 1;
     }
-    localStorage.setItem('shoppingCart', JSON.stringify(cart.value));
 }
 
+// Método para calcular el total del carrito
 function getTotal() {
     return cart.value.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+}
+
+// Método para emitir un evento cuando se actualiza el carrito
+function emitUpdate() {
+    emit('cart-updated', cart.value);
 }
 </script>
 
