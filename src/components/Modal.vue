@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" class="modal">
     <div class="modal-content">
-      <span class="close" @click="closeModal">&times;</span>
+      <!-- <span class="close" @click="closeModal">&times;</span> -->
       <div class="modal-body">
         <slot></slot>
       </div>

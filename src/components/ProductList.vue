@@ -25,25 +25,21 @@ function redirectToOrder(product) {
 .product-list {
     display: flex;
     flex-wrap: wrap;
+    gap: 30px; /* Espacio entre tarjetas */
+    justify-content: center; /* Centrar tarjetas horizontalmente */
 }
 
 .product-card {
     border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
+    padding: 15px;
+    margin: 10px; /* Espacio alrededor de cada tarjeta */
     text-align: center;
-    width: 200px;
+    width: 200px; /* Ancho de la tarjeta */
     cursor: pointer;
 }
 
 .product-card img {
     max-width: 100%;
     height: auto;
-}
-
-.product-card button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
 }
 </style>
