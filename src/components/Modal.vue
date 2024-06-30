@@ -2,7 +2,10 @@
   <div v-if="visible" class="modal">
     <div class="modal-content">
       <span class="close" @click="closeModal">&times;</span>
-      <slot></slot>
+      <div class="modal-body">
+        <slot></slot>
+      </div>
+      <button class="modal-button" @click="closeModal">Entendido</button>
     </div>
   </div>
 </template>
@@ -43,14 +46,18 @@ function closeModal() {
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 80%; /* Ajusta este valor según sea necesario */
-  max-height: 80%; /* Ajusta este valor según sea necesario */
-  overflow: auto; /* Añade scroll si el contenido es más largo */
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  position: relative;
+  text-align: center;
 }
 
 .close {
   color: #aaa;
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 28px;
   font-weight: bold;
 }
@@ -60,5 +67,21 @@ function closeModal() {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.modal-button:hover {
+  background-color: #0056b3;
 }
 </style>
