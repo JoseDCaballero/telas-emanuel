@@ -1,12 +1,13 @@
 <template>    
     <div class="product-list">
         <div v-for="product in products" :key="product.name" class="product-card" @click="redirectToOrder(product)">
-            <img :src="product.url" alt="Product Image" />            
+            <img :src="product.url" alt="Product Image" />
         </div>
     </div>
 </template>
 
 <script setup>
+import ModalCart from '../components/ModalCart.vue';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
@@ -25,16 +26,20 @@ function redirectToOrder(product) {
 .product-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Espacio entre tarjetas */
-    justify-content: center; /* Centrar tarjetas horizontalmente */
+    gap: 30px;
+    /* Espacio entre tarjetas */
+    justify-content: center;
+    /* Centrar tarjetas horizontalmente */
 }
 
 .product-card {
     border: 1px solid #ccc;
     padding: 15px;
-    margin: 10px; /* Espacio alrededor de cada tarjeta */
+    margin: 10px;
+    /* Espacio alrededor de cada tarjeta */
     text-align: center;
-    width: 200px; /* Ancho de la tarjeta */
+    width: 200px;
+    /* Ancho de la tarjeta */
     cursor: pointer;
 }
 

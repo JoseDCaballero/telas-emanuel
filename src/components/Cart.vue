@@ -1,26 +1,33 @@
 <template>
-    <div class="cart">
-        <h2>Carrito de Compras</h2>
-        <div v-if="cart.length === 0">
-            <p>El carrito está vacío.</p>
+    <div class="cart-container">
+        <h2 class="cart-title">Carrito de Compras</h2>
+
+        <div v-if="cart.length === 0" class="empty-cart">
+            <p>¡Tu carrito está vacío!</p>
         </div>
+
         <div v-else>
-            <div v-for="(item, index) in cart" :key="index" class="cart-item">
-                <div class="item-info">
-                    <h3>{{ item.name }}</h3>
-                    <p>Precio unitario: ${{ item.price }}</p>
-                    <p>Cantidad: {{ item.quantity }} {{ item.unit }}</p>
-                    <p>Total: ${{ item.price * item.quantity }}</p>
-                </div>
-                <div class="item-actions">
-                    <button @click="removeFromCart(index)">Eliminar</button>
-                    <label>
-                        Cantidad:
-                        <input type="number" v-model.number="cart[index].quantity" min="1" @change="updateQuantity(index)">
-                    </label>
+            <div class="cart-items">
+                <div v-for="(item, index) in cart" :key="index" class="cart-item">
+                    <div class="item-info">
+                        <h3>{{ item.name }}</h3>
+                        <p class="item-price">Precio unitario: ${{ item.price }}</p>
+                        <p>Cantidad: {{ item.quantity }}</p>
+                        <p class="item-total">Total: ${{ item.price * item.quantity }}</p>
+                    </div>
+
+                    <div class="item-actions">
+                        <div class="quantity-controls">
+                            <button @click="changeQuantity(index, 'decrement')" class="quantity-button">-</button>
+                            <span class="quantity-text">{{ item.quantity }}</span>
+                            <button @click="changeQuantity(index, 'increment')" class="quantity-button">+</button>
+                        </div>
+                        <button @click="removeFromCart(index)" class="remove-btn">Eliminar</button>
+                    </div>
                 </div>
             </div>
-            <div class="total">
+
+            <div class="cart-total">
                 <h3>Total: ${{ getTotal() }}</h3>
             </div>
         </div>
@@ -30,91 +37,162 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-// Definir emit
 const emit = defineEmits(['cart-updated']);
 
-// Props para recibir cartItems desde el componente padre (ModalCart.vue)
 const props = defineProps({
     cartItems: Array
 });
 
-// Propiedad reactiva para manejar el carrito
 const cart = ref([]);
 
-// Asignar los cartItems recibidos del padre al carrito
 watch(() => props.cartItems, (newVal) => {
     cart.value = newVal;
 }, { immediate: true });
 
-// Watcher para emitir el carrito actualizado al componente padre cuando cambie el carrito
 watch(cart, (newCart) => {
     emitUpdate();
 }, { deep: true });
 
-// Método para eliminar un elemento del carrito
 function removeFromCart(index) {
     cart.value.splice(index, 1);
 }
 
-// Método para actualizar la cantidad de un elemento en el carrito
-function updateQuantity(index) {
-    if (cart.value[index].quantity < 1) {
-        cart.value[index].quantity = 1;
+function changeQuantity(index, type) {
+    if (type === 'increment') {
+        cart.value[index].quantity++;
+    } else if (type === 'decrement' && cart.value[index].quantity > 1) {
+        cart.value[index].quantity--;
     }
 }
 
-// Método para calcular el total del carrito
 function getTotal() {
     return cart.value.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 }
 
-// Método para emitir un evento cuando se actualiza el carrito
 function emitUpdate() {
     emit('cart-updated', cart.value);
 }
 </script>
 
 <style scoped>
-.cart {
-    max-width: 600px;
+.cart-container {
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+    font-size: 2rem;
+    color: #000;
+    /* Color negro */
+    text-align: center;
+}
+
+.empty-cart {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.cart-items {
+    margin-top: 20px;
 }
 
 .cart-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    align-items: center;
+    border-bottom: 1px solid #ced4da;
+    padding: 10px 0;
 }
 
 .item-info {
     flex: 1;
 }
 
+.item-price,
+.item-total {
+    color: #6c757d;
+}
+
 .item-actions {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
-input[type="number"] {
-    width: 60px;
-    padding: 5px;
+.quantity-controls {
+    display: flex;
+    align-items: center;
 }
 
-button {
-    margin-top: 5px;
-    padding: 5px 10px;
+.quantity-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.total {
+.quantity-button:hover {
+    background-color: #0056b3;
+}
+
+.quantity-text {
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
+.cart-total {
     margin-top: 20px;
     text-align: right;
+}
+
+@media (max-width: 768px) {
+    .cart-container {
+        padding: 10px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-actions {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .quantity-button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .remove-btn {
+        margin-top: 10px;
+        margin-left: 0;
+    }
 }
 </style>

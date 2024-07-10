@@ -1,7 +1,6 @@
 <template>
     <div class="category-card" @click="handleClick">
-      <img :src="category.url" alt="Category Image" />
-      <h3>{{ category.name }}</h3>
+      <img :src="category.url" alt="Category Image" />      
     </div>
   </template>
   

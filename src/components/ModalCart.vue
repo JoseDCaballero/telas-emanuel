@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="showCart = true">
+    <button @click="showCart = true" class="cart-button">
       <font-awesome-icon icon="shopping-cart" />
       <span class="badge" v-if="cartItems.length > 0">{{ cartItems.length }}</span>
     </button>
@@ -8,6 +8,7 @@
       <Cart :cartItems="cartItems" @cart-updated="updateCartItems" />
     </Modal>
   </div>
+  <div style="padding-bottom: 30px;"></div>
 </template>
 
 <script setup>
@@ -56,15 +57,18 @@ function handleCartUpdated(event) {
 </script>
 
 <style scoped>
-button {
+.cart-button {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5rem; /* Adjust icon size as needed */
-  position: relative;
+  position: fixed;
+  top: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 1000; /* Ensure it appears above other elements */
 }
 
-button:focus {
+.cart-button:focus {
   outline: none;
 }
 
