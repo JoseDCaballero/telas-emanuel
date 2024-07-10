@@ -82,6 +82,7 @@ function emitUpdate() {
     border-radius: 8px;
     background-color: #f8f9fa;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el contenido en pantallas pequeñas */
 }
 
 .cart-title {
@@ -108,6 +109,7 @@ function emitUpdate() {
     align-items: center;
     border-bottom: 1px solid #ced4da;
     padding: 10px 0;
+    text-align: left; /* Ajusta el texto a la izquierda en pantallas pequeñas */
 }
 
 .item-info {
@@ -122,11 +124,14 @@ function emitUpdate() {
 .item-actions {
     display: flex;
     align-items: center;
+    flex-direction: column; /* Cambia la dirección del flex en pantallas pequeñas */
+    margin-top: 10px;
 }
 
 .quantity-controls {
     display: flex;
     align-items: center;
+    flex-direction: row; /* Asegura que los controles de cantidad estén en fila en pantallas pequeñas */
 }
 
 .quantity-button {
@@ -134,7 +139,7 @@ function emitUpdate() {
     color: white;
     border: none;
     padding: 8px 12px;
-    margin-right: 5px;
+    margin: 0 5px; /* Ajusta el margen de los botones de cantidad */
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -154,7 +159,7 @@ function emitUpdate() {
     color: white;
     border: none;
     padding: 8px 16px;
-    margin-left: 10px;
+    margin: 10px 0 0; /* Ajusta el margen del botón de eliminar */
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -166,33 +171,6 @@ function emitUpdate() {
 
 .cart-total {
     margin-top: 20px;
-    text-align: right;
-}
-
-@media (max-width: 768px) {
-    .cart-container {
-        padding: 10px;
-    }
-
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .item-actions {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    .quantity-button {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-
-    .remove-btn {
-        margin-top: 10px;
-        margin-left: 0;
-    }
+    text-align: center; /* Centra el texto del total en pantallas pequeñas */
 }
 </style>

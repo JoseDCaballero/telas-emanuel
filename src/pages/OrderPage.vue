@@ -106,12 +106,17 @@ onMounted(fetchProduct);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
+    box-sizing: border-box;
+    max-width: 1200px; /* Asegura que el contenedor principal no se extienda demasiado */
+}
+
+.image-section, .info-section {
+    flex: 1 1 calc(50% - 10px); /* Asegura que ambos contenedores ocupen 50% menos el margen */
+    max-width: 45%; /* Limita el tamaño máximo de los contenedores */
+    margin-bottom: 20px; /* Añade espacio en la parte inferior para separación en pantallas pequeñas */
 }
 
 .image-section {
-    flex: 1;
-    max-width: 100%;
-    margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,12 +127,11 @@ onMounted(fetchProduct);
 }
 
 .info-section {
-    flex: 1;
-    min-width: 250px;
     background: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 img {
@@ -141,18 +145,21 @@ h1 {
     font-size: 24px;
     color: #333;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .price {
     font-size: 20px;
     color: #888;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .note {
     font-size: 14px;
     color: #ff4d4d;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .quantity-controls {
@@ -215,15 +222,33 @@ h1 {
 @media (max-width: 768px) {
     .product-container {
         flex-direction: column;
+        align-items: center;
+        padding: 10px;
     }
 
-    .image-section {
-        margin-right: 0;
-        margin-bottom: 20px;
+    .image-section, .info-section {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 20px; /* Añade espacio en la parte inferior para separación en pantallas pequeñas */
     }
 
     .info-section {
-        min-width: 100%;
+        padding: 75px;      
+    }
+
+    img {
+        max-height: 300px;
+    }
+
+    .quantity-button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .add-to-cart-button {
+        padding: 10px 20px;
+        font-size: 16px;
     }
 }
 </style>

@@ -13,7 +13,7 @@
     </div>
     <div v-else>
       <h3>Productos por categoría</h3>
-      <div  class="categories">
+      <div class="categories flex flex-wrap sm:block">
         <CategoryCard v-for="category in categories" :key="category.name" :category="category" @select-category="selectCategory" />
       </div>      
     </div>
@@ -108,5 +108,11 @@ a {
 .loading-gif {
   width: 500px;
   height: 450px;
+}
+
+@media (max-width: 640px) {
+  .categories {
+    display: block;
+  }
 }
 </style>

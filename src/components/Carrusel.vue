@@ -5,12 +5,6 @@
         <img :src="slide" alt="" class="w-full h-80 object-cover rounded-lg shadow-md">
       </div>
     </div>
-    <button @click="prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded-full shadow-md focus:outline-none z-10">
-      &larr;
-    </button>
-    <button @click="next" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded-full shadow-md focus:outline-none z-10">
-      &rarr;
-    </button>
   </div>
 </template>
 
