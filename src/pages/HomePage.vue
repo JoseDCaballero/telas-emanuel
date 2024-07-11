@@ -121,9 +121,9 @@ a {
   height: 80vh;
   width: 80vh;
   background-size: cover;
-  text-align: center;
+  /*text-align: center;
   display: flex;
-  align-items: center;
+  align-items: center;*/
 }  
 
 #marco{
