@@ -2,9 +2,10 @@
   <main>
     <ModalCart />
     <h1>Telas Emanuel</h1>
-    
-    <div id="logo">
+    <div id="marco">
+      <div id="logo">
       <h1 style="color: #fff;">TELAS EMANUEL</h1>
+    </div>
     </div>
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
@@ -118,7 +119,14 @@ a {
   background-image: url("/public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg");
   height: 50vh;
   width: 80vh;
-} 
+  background-size: cover;
+}  
+
+#marco{
+  text-align:center;
+  heigth:200vh;
+  width: 150vh;
+}
 
 @media (max-width: 640px) {
   .categories {
