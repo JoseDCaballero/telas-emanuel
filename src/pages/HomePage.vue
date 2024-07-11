@@ -2,12 +2,12 @@
   <main>
     <ModalCart />
     <h1>Telas Emanuel</h1>
-    <!--<div id="marco">-->
+      <div id="marco">
       <div id="logo">
         <h1 style="color: #fff;">LONAS Y VINILES</h1>
         <h1 style="color: #fff;">TELAS PARA TAPICERIA Y MAS...</h1>
       </div>
-    <!--</div>-->
+    </div>
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
       <Carrusel :slides="slides.map(slide => slide.url)" v-if="slides.length > 0" />
@@ -124,6 +124,7 @@ a {
   /*text-align: center;
   display: flex;
   align-items: center;*/
+  padding-left: 20vh;
 }  
 
 #marco{
