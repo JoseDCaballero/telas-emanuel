@@ -3,7 +3,7 @@
     <ModalCart />
     <h1>Telas Emanuel</h1>
       <div id="marco">
-        <p>Aquí se añadira la imagen del logo de la tienda</p>
+        <img src="LOGO">
       <div id="logo">
         <h1 style="color: #000;">LONAS Y VINILES</h1>
         <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
@@ -34,6 +34,7 @@ import axios from 'axios';
 import Carrusel from '../components/Carrusel.vue';
 import CategoryCard from '../components/CategoryCard.vue';
 import ModalCart from '../components/ModalCart.vue';
+import LOGO from '/public/mueble.png' 
 
 const router = useRouter();
 const slides = ref([]);
