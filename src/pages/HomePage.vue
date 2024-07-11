@@ -2,11 +2,11 @@
   <main>
     <ModalCart />
     <h1>Telas Emanuel</h1>
-    <div id="marco">
+    <!--<div id="marco">-->
       <div id="logo">
-      <h1 style="color: #fff;">TELAS EMANUEL</h1>
-    </div>
-    </div>
+        <h1 style="color: #fff;">TELAS EMANUEL</h1>
+      </div>
+    <!--</div>-->
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
       <Carrusel :slides="slides.map(slide => slide.url)" v-if="slides.length > 0" />
@@ -117,11 +117,12 @@ a {
 
 #logo{
   background-image: url("/public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg");
-  height: 50vh;
-  width: 80vh;
+  /*height: 50vh;
+  width: 80vh;*/
   background-size: cover;
   text-align: center;
   display: flex;
+  align-items: center;
 }  
 
 #marco{
