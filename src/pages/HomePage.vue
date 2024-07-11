@@ -4,7 +4,8 @@
     <h1>Telas Emanuel</h1>
     <!--<div id="marco">-->
       <div id="logo">
-        <h1 style="color: #fff;">TELAS EMANUEL</h1>
+        <h1 style="color: #fff;">LONAS Y VINILES</h1>
+        <h1 style="color: #fff;">TELAS PARA TAPICERIA Y MAS...</h1>
       </div>
     <!--</div>-->
     <h3>Productos más vendidos</h3>
