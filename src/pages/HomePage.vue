@@ -3,7 +3,7 @@
     <ModalCart />
     <h1>Telas Emanuel</h1>
       <div id="marco">
-        <img :src="LOGO">
+        <img :src="LOGO" id="muebele">
       <div id="logo">
         <h1 style="color: #000;">LONAS Y VINILES</h1>
         <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
@@ -129,14 +129,19 @@ a {
 }  
 
 #marco{
-  text-align:center;
+  /*text-align:center;
   display: flex;
-  align-items: center;
+  align-items: center;*/
   heigth:200vh; 
   width: 150vh;
   padding-left: 45vh;
 }
 
+#muebele{
+  width: 30vh;
+  heigth: 50vh;
+}
+  
 @media (max-width: 640px) {
   .categories {
     display: block;
