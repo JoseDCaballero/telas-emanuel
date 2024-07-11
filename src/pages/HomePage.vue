@@ -2,7 +2,7 @@
   <main>
     <ModalCart />
     <h1>Telas Emanuel</h1>
-    <img src="../public/public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg">
+    <img src="../public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg">
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
       <Carrusel :slides="slides.map(slide => slide.url)" v-if="slides.length > 0" />
