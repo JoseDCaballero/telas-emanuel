@@ -132,7 +132,7 @@ a {
   align-items: center;
   heigth:200vh; 
   width: 150vh;
-  padding-left: 80vh;
+  padding-left: 55vh;
 }
 
 @media (max-width: 640px) {
