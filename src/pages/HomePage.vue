@@ -1,6 +1,6 @@
 <template>
   <main>
-    <ModalCart />
+    <!--<ModalCart />-->
     <h1>Telas Emanuel</h1>
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
