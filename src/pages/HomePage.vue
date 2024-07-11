@@ -117,7 +117,7 @@ a {
 
 #logo{
   background-image: url("/public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg");
-  height: 50vh;
+  height: 80vh;
   /*width: 80vh;*/
   background-size: cover;
   text-align: center;
