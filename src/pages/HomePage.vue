@@ -4,8 +4,8 @@
     <h1>Telas Emanuel</h1>
       <div id="marco">
       <div id="logo">
-        <h1 style="color: #fff;">LONAS Y VINILES</h1>
-        <h1 style="color: #fff;">TELAS PARA TAPICERIA Y MAS...</h1>
+        <h1 style="color: #000;">LONAS Y VINILES</h1>
+        <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
       </div>
     </div>
     <h3>Productos más vendidos</h3>
@@ -132,7 +132,7 @@ a {
   align-items: center;
   heigth:200vh; 
   width: 150vh;
-  padding-left: 20vh;
+  padding-left: 80vh;
 }
 
 @media (max-width: 640px) {
