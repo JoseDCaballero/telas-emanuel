@@ -124,7 +124,9 @@ a {
 
 #marco{
   text-align:center;
-  heigth:200vh;
+  display: flex;
+  align-items: center;
+  heigth:200vh; 
   width: 150vh;
 }
 
