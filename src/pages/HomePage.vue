@@ -120,6 +120,8 @@ a {
   height: 50vh;
   width: 80vh;
   background-size: cover;
+  text-align: center;
+  display: flex;
 }  
 
 #marco{
