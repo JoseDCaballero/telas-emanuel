@@ -3,7 +3,7 @@
     <ModalCart />
     <h1>Telas Emanuel</h1>
       <div id="marco">
-        <lmg url=("/public/mueble.png")>
+        <lmg src="/mueble.png">
       <div id="logo">
         <h1 style="color: #000;">LONAS Y VINILES</h1>
         <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
