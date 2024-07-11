@@ -124,7 +124,6 @@ a {
   /*text-align: center;
   display: flex;
   align-items: center;*/
-  padding-left: 20vh;
 }  
 
 #marco{
@@ -133,6 +132,7 @@ a {
   align-items: center;
   heigth:200vh; 
   width: 150vh;
+  padding-left: 20vh;
 }
 
 @media (max-width: 640px) {
