@@ -1,14 +1,14 @@
 <template>
+  <header>
+    <img src="../images/pecesito.png" id="pez">
+    <img src="../images/logo.jpeg" id="nombre">
+  </header>
   <main>
     <ModalCart />
-    <h1>Telas Emanuel</h1>
-      <div id="marco">
-        <img :src="LOGO" id="muebele">
       <div id="logo">
         <h1 style="color: #000;">LONAS Y VINILES</h1>
         <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
       </div>
-    </div>
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4" @click="verProd">
       <Carrusel :slides="slides.map(slide => slide.url)" v-if="slides.length > 0" />
@@ -34,7 +34,6 @@ import axios from 'axios';
 import Carrusel from '../components/Carrusel.vue';
 import CategoryCard from '../components/CategoryCard.vue';
 import ModalCart from '../components/ModalCart.vue';
-import LOGO from '/public/mueble.png' 
 
 const router = useRouter();
 const slides = ref([]);
@@ -119,29 +118,14 @@ a {
 }
 
 #logo{
-  background-image: url("/public/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg");
-  height: 80vh;
-  width: 80vh;
+  background-image: url("/WhatsApp Image 2024-07-11 at 1.37.56 PM.jpeg");
   background-size: cover;
-  /*text-align: center;
-  display: flex;
-  align-items: center;*/
 }  
 
-#marco{
-  /*text-align:center;
-  display: flex;
-  align-items: center;*/
-  heigth:200vh; 
-  width: 150vh;
-  padding-left: 45vh;
+#pez{
+  width: 16vh;
+  height: 8vh;
 }
-
-#muebele{
-  width: 30vh;
-  heigth: 50vh;
-}
-  
 @media (max-width: 640px) {
   .categories {
     display: block;
