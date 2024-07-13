@@ -13,7 +13,7 @@
                         <h3>{{ item.name }}</h3>
                         <p class="item-price">Precio unitario: ${{ item.price }}</p>
                         <p>Cantidad: {{ item.quantity }}</p>
-                        <p class="item-total">Total: ${{ item.price * item.quantity }}</p>
+                        <p class="item-total">Total: ${{ (item.price * item.quantity).toFixed(2) }}</p>
                     </div>
 
                     <div class="item-actions">
@@ -59,9 +59,12 @@ function removeFromCart(index) {
 
 function changeQuantity(index, type) {
     if (type === 'increment') {
-        cart.value[index].quantity++;
-    } else if (type === 'decrement' && cart.value[index].quantity > 1) {
-        cart.value[index].quantity--;
+        cart.value[index].quantity = Math.round((cart.value[index].quantity + 0.5) * 10) / 10;
+    } else if (type === 'decrement' && cart.value[index].quantity > 0.5) {
+        cart.value[index].quantity = Math.round((cart.value[index].quantity - 0.5) * 10) / 10;
+        if (cart.value[index].quantity < 0.5) {
+            cart.value[index].quantity = 0.5;
+        }
     }
 }
 
@@ -82,13 +85,12 @@ function emitUpdate() {
     border-radius: 8px;
     background-color: #f8f9fa;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centra el contenido en pantallas pequeñas */
+    text-align: center;
 }
 
 .cart-title {
     font-size: 2rem;
     color: #000;
-    /* Color negro */
     text-align: center;
 }
 
@@ -109,7 +111,7 @@ function emitUpdate() {
     align-items: center;
     border-bottom: 1px solid #ced4da;
     padding: 10px 0;
-    text-align: left; /* Ajusta el texto a la izquierda en pantallas pequeñas */
+    text-align: left;
 }
 
 .item-info {
@@ -124,14 +126,14 @@ function emitUpdate() {
 .item-actions {
     display: flex;
     align-items: center;
-    flex-direction: column; /* Cambia la dirección del flex en pantallas pequeñas */
+    flex-direction: column;
     margin-top: 10px;
 }
 
 .quantity-controls {
     display: flex;
     align-items: center;
-    flex-direction: row; /* Asegura que los controles de cantidad estén en fila en pantallas pequeñas */
+    flex-direction: row;
 }
 
 .quantity-button {
@@ -139,7 +141,7 @@ function emitUpdate() {
     color: white;
     border: none;
     padding: 8px 12px;
-    margin: 0 5px; /* Ajusta el margen de los botones de cantidad */
+    margin: 0 5px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -159,7 +161,7 @@ function emitUpdate() {
     color: white;
     border: none;
     padding: 8px 16px;
-    margin: 10px 0 0; /* Ajusta el margen del botón de eliminar */
+    margin: 10px 0 0;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -171,6 +173,6 @@ function emitUpdate() {
 
 .cart-total {
     margin-top: 20px;
-    text-align: center; /* Centra el texto del total en pantallas pequeñas */
+    text-align: center;
 }
 </style>

@@ -7,7 +7,7 @@
         <div class="info-section">
             <h1>{{ product.name }}</h1>
             <p class="price">Precio: ${{ product.price }}</p>
-            <p v-if="product.categoryName === 'Cierres'" class="note">*Incluye 2 seguros*</p>
+            <p v-if="product.categoryName === 'Cierres'" class="note">*Incluye 2 carretes*</p>
             <div class="quantity-controls">
                 <label>{{ unit }}:</label>
                 <div class="quantity-buttons">
@@ -33,7 +33,7 @@ import Modal from '../components/Modal.vue';
 
 const route = useRoute();
 const product = ref({});
-const quantity = ref(1);
+const quantity = ref(0.5);
 const unit = ref('');
 const isModalVisible = ref(false);
 
@@ -52,7 +52,7 @@ function setUnit(categoryName) {
         unit.value = 'Metros';
     } else if (['Hules espuma'].includes(categoryName)) {
         unit.value = 'Piezas';
-    } else if(['Pegamentos']){
+    } else if (['Pegamentos'].includes(categoryName)) {
         unit.value = 'Litros';
     }
 }
@@ -61,7 +61,7 @@ function addToCart() {
     const item = {
         name: product.value.name,
         price: product.value.price,
-        quantity: parseInt(quantity.value),
+        quantity: parseFloat(quantity.value),
         unit: unit.value
     };
     const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
@@ -82,13 +82,16 @@ function handleCartUpdated(cart) {
 }
 
 function decreaseQuantity() {
-    if (quantity.value > 1) {
-        quantity.value--;
+    if (quantity.value > 0.5) {
+        quantity.value = Math.round((quantity.value - 0.5) * 10) / 10;
+        if (quantity.value < 0.5) {
+            quantity.value = 0.5;
+        }
     }
 }
 
 function increaseQuantity() {
-    quantity.value++;
+    quantity.value = Math.round((quantity.value + 0.5) * 10) / 10;
 }
 
 onMounted(fetchProduct);

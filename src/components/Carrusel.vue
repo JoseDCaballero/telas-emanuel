@@ -1,45 +1,51 @@
 <template>
   <div class="relative overflow-hidden w-full max-w-4xl mx-auto">
     <div class="flex transition-transform duration-700 ease-in-out" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-      <div v-for="(slide, index) in slides" :key="index" class="flex-shrink-0 w-full">
-        <img :src="slide" alt="" class="w-full h-80 object-cover rounded-lg shadow-md">
+      <div v-for="(slide, index) in slides" :key="index" class="flex-shrink-0 w-full" @click="selectSlide(index)">
+        <img :src="slide.url" alt="" class="w-full h-80 object-cover rounded-lg shadow-md">
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, defineEmits } from 'vue';
 
 const props = defineProps({
   slides: {
     type: Array,
     required: true
   }
-})
+});
 
-const currentIndex = ref(0)
-let intervalId
+const emits = defineEmits(['select-slide']);
+
+const currentIndex = ref(0);
+let intervalId;
 
 const next = () => {
-  currentIndex.value = (currentIndex.value + 1) % props.slides.length
-}
+  currentIndex.value = (currentIndex.value + 1) % props.slides.length;
+};
 
 const prev = () => {
-  currentIndex.value = (currentIndex.value - 1 + props.slides.length) % props.slides.length
-}
+  currentIndex.value = (currentIndex.value - 1 + props.slides.length) % props.slides.length;
+};
 
 const startAutoSlide = () => {
-  intervalId = setInterval(next, 3000) // Cambia las imágenes cada 3 segundos
-}
+  intervalId = setInterval(next, 3000); // Cambia las imágenes cada 3 segundos
+};
+
+const selectSlide = (index) => {
+  emits('select-slide', index);
+};
 
 onMounted(() => {
-  startAutoSlide()
-})
+  startAutoSlide();
+});
 
 onUnmounted(() => {
-  clearInterval(intervalId)
-})
+  clearInterval(intervalId);
+});
 </script>
 
 <style scoped>
