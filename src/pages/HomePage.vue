@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="../images/logo.jpeg" id="nombre">
+    <img src="../images/logo.jpeg" id="nombre" alt="Telas Emanuel logo" title="Telas Emanuel tienda en línea">
     <img src="../images/pecesito.png" id="pez">
   </header>
   <main>

@@ -15,7 +15,7 @@
 import { ref, watch, onMounted } from 'vue';
 import Modal from './Modal.vue';
 import Cart from './Cart.vue';
-import { defineEmits } from 'vue';
+//import { defineEmits } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';

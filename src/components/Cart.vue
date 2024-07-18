@@ -13,7 +13,9 @@
                         <h3>{{ item.name }}</h3>
                         <p class="item-price">Precio unitario: ${{ item.price }}</p>
                         <p>Cantidad: {{ item.quantity }}</p>
-                        <p class="item-total">Total: ${{ (item.price * item.quantity).toFixed(2) }}</p>
+                        <label>Precio tapicero</label>
+                        <input type="checkbox" @change="toggleDescuento(index)" :id="'tapicero-' + index">
+                        <p class="item-total">Precio final: ${{ isChecked(index) ? calcularDescuento(item.price * item.quantity, 46.01) : (item.price * item.quantity).toFixed(2) }}</p>
                     </div>
 
                     <div class="item-actions">
@@ -36,6 +38,8 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+
+const descuentoActivo = ref([]);
 
 const emit = defineEmits(['cart-updated']);
 
@@ -68,8 +72,34 @@ function changeQuantity(index, type) {
     }
 }
 
+function calcularDescuento(cantidadTotal, porcentajeDescuento){
+    let descuento = (cantidadTotal * (porcentajeDescuento / 100)).toFixed(2);
+    let total = (cantidadTotal - descuento).toFixed(2);
+    
+    // Convertimos los valores de string a número
+    descuento = parseFloat(descuento);
+    total = parseFloat(total);
+    
+    return total;
+}
+
+function isChecked(index) {
+    return descuentoActivo.value.includes(index);
+}
+
+function toggleDescuento(index) {
+    if (descuentoActivo.value.includes(index)) {
+        descuentoActivo.value = descuentoActivo.value.filter(i => i !== index);
+    } else {
+        descuentoActivo.value.push(index);
+    }
+}
+
 function getTotal() {
-    return cart.value.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+    return cart.value.reduce((acc, item, index) => {
+        let itemTotal = isChecked(index) ? calcularDescuento(item.price * item.quantity, 46.01) : (item.price * item.quantity).toFixed(2);
+        return acc + parseFloat(itemTotal);
+    }, 0).toFixed(2);
 }
 
 function emitUpdate() {

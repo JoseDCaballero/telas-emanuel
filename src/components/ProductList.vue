@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import ModalCart from '../components/ModalCart.vue';
+//import ModalCart from '../components/ModalCart.vue';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
