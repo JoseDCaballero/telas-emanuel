@@ -9,7 +9,6 @@
             <p class="price">Precio: ${{ product.price }}</p>
             <p v-if="product.categoryName === 'Cierres'" class="note">*Incluye 2 carretes*</p>
             <div class="quantity-controls">
-                <label>{{ unit }}:</label>
                 <div class="quantity-buttons">
                     <button @click="decreaseQuantity" class="quantity-button">-</button>
                     <span class="quantity-display">{{ quantity }}</span>
@@ -33,7 +32,7 @@ import Modal from '../components/Modal.vue';
 
 const route = useRoute();
 const product = ref({});
-const quantity = ref(0.5);
+const quantity = ref(1);
 const unit = ref('');
 const isModalVisible = ref(false);
 
