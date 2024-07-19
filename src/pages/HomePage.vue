@@ -15,7 +15,7 @@
       <p v-else>Cargando productos...</p>
     </div>
     <div v-if="isLoading" class="loading-container">
-      <img src="../images/loading.gif" alt="Cargando" class="loading-gif"/>
+      <img src="../images/carga.gif" alt="Cargando" class="loading-gif"/>
       <p>Cargando...</p>
     </div>
     <div v-else>
