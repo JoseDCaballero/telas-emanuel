@@ -6,8 +6,8 @@
   <main>
     <ModalCart @cartUpdated="handleCartUpdated" />
     <div id="logo">
-      <h1 style="color: #000;">LONAS Y VINILES</h1>
-      <h1 style="color: #000;">TELAS PARA TAPICERIA Y MAS...</h1>
+      <h1 id="textito">LONAS Y VINILES</h1>
+      <h1 id="textito">TELAS PARA TAPICERIA Y MAS...</h1>
     </div>
     <h3>Productos más vendidos</h3>
     <div class="container mx-auto p-4">
@@ -136,6 +136,15 @@ a {
 #pez{
   width: 16vh;
   height: 8vh;
+}
+
+#textito {
+  color: white; /* Color del texto */
+  text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; /* Sombra del texto para simular el borde */
 }
 
 @media (max-width: 640px) {
