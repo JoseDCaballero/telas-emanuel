@@ -1,10 +1,11 @@
 <template>
+  <marquee style="font-size: 50px;">Este sitio será desactivado hasta que reciba actualizaciones de nueva cuenta.</marquee>
   <header>
     <img src="../images/logo.jpeg" id="nombre" alt="Telas Emanuel logo" title="Telas Emanuel tienda en línea">
     <img src="../images/pecesito.png" id="pez">
   </header>
   <main>
-    <ModalCart @cartUpdated="handleCartUpdated" />
+    <ModalCart @cartUpdated="handleCartUpdated" />    
     <div id="logo">
       <h1 id="textito">LONAS Y VINILES</h1>
       <h1 id="textito">TELAS PARA TAPICERIA Y MAS...</h1>
