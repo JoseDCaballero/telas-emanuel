@@ -9,7 +9,7 @@ import DefaultLayout from './layouts/DefaultLayout.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/1',
     name: 'home',
     component: HomePage,
     meta: {
@@ -18,7 +18,7 @@ const routes = [
     }
   },
   {
-    path: '/categories/',
+    path: '/cateories/',
     name: 'product',
     component: CategoryPage,
     meta:{
@@ -27,7 +27,7 @@ const routes = [
     }    
   },
   {
-    path: '/categories/:categoryName',
+    path: '/catories/:categoryName',
     name: 'products',
     component: ProductsPage,
     meta:{
@@ -36,7 +36,7 @@ const routes = [
     }
   },
   {
-    path: '/categories/:categoryName/:product',
+    path: '/catries/:categoryNe/:product',
     name: 'OrderPage',
     component: OrderPage,
     meta:{
